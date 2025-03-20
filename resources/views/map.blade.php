@@ -26,8 +26,8 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Create Point</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="POST" action="{{route('points.store')}}">
-                <div class="modal-body">
+                <form method="POST" action="{{ route('points.store') }}">
+                    <div class="modal-body">
 
                         @csrf
 
@@ -45,12 +45,12 @@
                             <textarea class="form-control" id="geom_point" name="geom_point" rows="3"></textarea>
                         </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -63,8 +63,8 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Create Polyline</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="POST" action="{{route('polylines.store')}}">
-                <div class="modal-body">
+                <form method="POST" action="{{ route('polylines.store') }}">
+                    <div class="modal-body">
 
                         @csrf
 
@@ -82,12 +82,12 @@
                             <textarea class="form-control" id="geom_polyline" name="geom_polyline" rows="3"></textarea>
                         </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -100,8 +100,8 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Create Polygon</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="POST" action="{{route('polygons.store')}}">
-                <div class="modal-body">
+                <form method="POST" action="{{ route('polygons.store') }}">
+                    <div class="modal-body">
 
                         @csrf
 
@@ -119,12 +119,12 @@
                             <textarea class="form-control" id="geom_polygon" name="geom_polygon" rows="3"></textarea>
                         </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -208,6 +208,71 @@
             }
 
             drawnItems.addLayer(layer);
+        });
+
+        //GeoJSON Points
+        var point = L.geoJson(null, {
+            onEachFeature: function(feature, layer) {
+                var popupContent = "Name: " + feature.properties.name + "<br>" +
+                    "Deskripsi: " + feature.properties.description + "<br>" +
+                    "Dibuat: " + feature.properties.created_at;
+                layer.on({
+                    click: function(e) {
+                        point.bindPopup(popupContent);
+                    },
+                    mouseover: function(e) {
+                        point.bindTooltip(feature.properties.name);
+                    },
+                });
+            },
+        });
+        $.getJSON("{{ route('api.points') }}", function(data) {
+            point.addData(data);
+            map.addLayer(point);
+        });
+
+        //GeoJSON Polylines
+        var polyline = L.geoJson(null, {
+            onEachFeature: function(feature, layer) {
+                var popupContent = "Name: " + feature.properties.name + "<br>" +
+                    "Deskripsi: " + feature.properties.description + "<br>" +
+                    "Panjang: " + feature.properties.length_km.toFixed(2) + "km<br>" +
+                    "Dibuat: " + feature.properties.created_at;
+                layer.on({
+                    click: function(e) {
+                        polyline.bindPopup(popupContent);
+                    },
+                    mouseover: function(e) {
+                        polyline.bindTooltip(feature.properties.name);
+                    },
+                });
+            },
+        });
+        $.getJSON("{{ route('api.polylines') }}", function(data) {
+            polyline.addData(data);
+            map.addLayer(polyline);
+        });
+
+        //GeoJSON Polygons
+        var polygon = L.geoJson(null, {
+            onEachFeature: function(feature, layer) {
+                var popupContent = "Name: " + feature.properties.name + "<br>" +
+                    "Deskripsi: " + feature.properties.description + "<br>" +
+                    "Luas: " + feature.properties.luas_km2 + "km2<br>" +
+                    "Dibuat: " + feature.properties.created_at;
+                layer.on({
+                    click: function(e) {
+                        polygon.bindPopup(popupContent);
+                    },
+                    mouseover: function(e) {
+                        polygon.bindTooltip(feature.properties.name);
+                    },
+                });
+            },
+        });
+        $.getJSON("{{ route('api.polygons') }}", function(data) {
+            polygon.addData(data);
+            map.addLayer(polygon);
         });
     </script>
 @endsection
