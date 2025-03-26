@@ -258,7 +258,7 @@
             onEachFeature: function(feature, layer) {
                 var popupContent = "Name: " + feature.properties.name + "<br>" +
                     "Deskripsi: " + feature.properties.description + "<br>" +
-                    "Luas: " + feature.properties.luas_km2 + "km2<br>" +
+                    "Luas: " + feature.properties.luas_km2.toFixed(2) + "km2<br>" +
                     "Dibuat: " + feature.properties.created_at;
                 layer.on({
                     click: function(e) {
@@ -274,5 +274,17 @@
             polygon.addData(data);
             map.addLayer(polygon);
         });
+
+        // Control layer
+        var overlayMaps = {
+            "Points": point,
+            "Polylines": polyline,
+            "Polygons": polygon,
+        };
+
+        var controllayer = L.control.layers(null, overlayMaps, {
+            collapsed: false
+        });
+        controllayer.addTo(map);
     </script>
 @endsection
