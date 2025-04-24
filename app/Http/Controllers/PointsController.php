@@ -42,9 +42,10 @@ class PointsController extends Controller
         //Validate request
         $request->validate(
             [
-            'name' => 'required|unique:points,name',
-            'description' => 'required',
-            'geom_point' => 'required',
+                'name' => 'required|unique:points,name',
+                'description' => 'required',
+                'geom_point' => 'required',
+                'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ],
             [
                 'name.required' => 'Name is required',
@@ -54,10 +55,25 @@ class PointsController extends Controller
             ]
         );
 
+        // Create images directory if not exist
+        if (!is_dir('storage/images')) {
+            mkdir('./storage/images', 0777);
+        }
+
+        // Get image file
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $name_image = time() . "_point." . strtolower($image->getClientOriginalExtension());
+            $image->move('storage/images', $name_image);
+        } else {
+            $name_image = null;
+        }
+
         $data = [
             'geom' => $request->geom_point,
             'name' => $request->name,
             'description' => $request->description,
+            'image' => $name_image,
         ];
 
 
