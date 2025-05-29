@@ -74,6 +74,7 @@ class PointsController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'image' => $name_image,
+            'user_id' => auth()->user()->id,
         ];
 
 
@@ -158,7 +159,6 @@ class PointsController extends Controller
             'description' => $request->description,
             'image' => $name_image,
         ];
-
 
         //Update Data
         if (!$this->points->find($id)->update($data)) {
