@@ -255,10 +255,11 @@
                     "<form method='POST' action='" + routedelete + "'>" +
                     '@csrf' + '@method('DELETE')' +
                     "<button type='submit' class='btn btn-sm btn-danger' onclick='return confirm(`Yakin akan dihapus?`)'><i class='fa-solid fa-trash-can'></i></button>" +
-                "</form>" +
-                "</div>" +
-                "</div>" + "<br>" +
-                "<p>Dibuat Oleh: " + feature.properties.user_created + "</p>";
+                    "</form>" +
+                    "</div>" +
+                    "</div>" + "<br>" +
+                    "<p>Dibuat Oleh: " + feature.properties.user_created + "</p>" +
+                    "</div>";
 
                 layer.on({
                     click: function(e) {
@@ -300,10 +301,11 @@
                     "<form method='POST' action='" + routedelete + "'>" +
                     '@csrf' + '@method('DELETE')' +
                     "<button type='submit' class='btn btn-sm btn-danger' onclick='return confirm(`Yakin akan dihapus?`)'><i class='fa-solid fa-trash-can'></i></button>" +
-                "</form>" +
-                "</div>" +
-                "</div>" + "<br>" +
-                "<p>Dibuat Oleh: " + feature.properties.user_created + "</p>";
+                    "</form>" +
+                    "</div>" +
+                    "</div>" + "<br>" +
+                    "<p>Dibuat Oleh: " + feature.properties.user_created + "</p>" +
+                    "</div>";
 
                 layer.on({
                     click: function(e) {
@@ -345,11 +347,12 @@
                     "<form method='POST' action='" + routedelete + "'>" +
                     '@csrf' + '@method('DELETE')' +
                     "<button type='submit' class='btn btn-sm btn-danger' onclick='return confirm(`Yakin akan dihapus?`)'><i class='fa-solid fa-trash-can'></i></button>" +
-                "</form>" +
-                "</div>" +
-                "</div>" + "<br>" +
-                "<p>Dibuat Oleh: " + feature.properties.user_created + "</p>";
-                
+                    "</form>" +
+                    "</div>" +
+                    "</div>" + "<br>" +
+                    "<p>Dibuat Oleh: " + feature.properties.user_created + "</p>" +
+                    "</div>";
+
                 layer.on({
                     click: function(e) {
                         polygon.bindPopup(popupContent);

@@ -11,13 +11,32 @@ class PolylinesModel extends Model
 
     protected $guarded = ['id'];
 
+    protected $fillable = [
+        'geom',
+        'name',
+        'description',
+        'image',
+        'user_id',
+    ];
+
     public function geojson_polylines()
     {
         $polylines = $this
-        ->select(DB::raw('polylines.id, st_asgeojson(polylines.geom) as geom, polylines.name, polylines.description, polylines.image,
-        st_length(geom, true) as length_m, st_length(geom, true)/1000 as length_km, polylines.created_at, polylines.updated_at', 'polylines.user_id', 'users.name as user_created'))
-        ->leftJoin('users', 'polylines.user_id', '=', 'users.id')
-        ->get();
+            ->select(DB::raw(
+                'polylines.id,
+                st_asgeojson(polylines.geom) as geom,
+                polylines.name,
+                polylines.description,
+                polylines.image,
+                st_length(polylines.geom, true) as length_m,
+                st_length(polylines.geom, true)/1000 as length_km,
+                polylines.created_at,
+                polylines.updated_at,
+                polylines.user_id,
+                users.name as user_created'
+            ))
+            ->leftJoin('users', 'polylines.user_id', '=', 'users.id')
+            ->get();
 
         $geojson = [
             'type' => 'FeatureCollection',
@@ -29,7 +48,7 @@ class PolylinesModel extends Model
                 'type' => 'Feature',
                 'geometry' => json_decode($p->geom),
                 'properties' => [
-                    'id'=> $p->id,
+                    'id' => $p->id,
                     'name' => $p->name,
                     'description' => $p->description,
                     'image' => $p->image,
@@ -51,10 +70,10 @@ class PolylinesModel extends Model
     public function geojson_polyline($id)
     {
         $polylines = $this
-        ->select(DB::raw('id, st_asgeojson(geom) as geom, name, description, image,
+            ->select(DB::raw('id, st_asgeojson(geom) as geom, name, description, image,
         st_length(geom, true) as length_m, st_length(geom, true)/1000 as length_km, created_at, updated_at'))
-        ->where('id', $id)
-        ->get();
+            ->where('id', $id)
+            ->get();
 
         $geojson = [
             'type' => 'FeatureCollection',
@@ -66,7 +85,7 @@ class PolylinesModel extends Model
                 'type' => 'Feature',
                 'geometry' => json_decode($p->geom),
                 'properties' => [
-                    'id'=> $p->id,
+                    'id' => $p->id,
                     'name' => $p->name,
                     'description' => $p->description,
                     'image' => $p->image,
