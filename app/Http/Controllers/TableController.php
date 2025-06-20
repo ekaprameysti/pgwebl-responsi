@@ -21,6 +21,9 @@ class TableController extends Controller
         $data = [
             'title' => 'Table',
             'points' => $this->points->all(),
+            'polylines' => $this->polylines->all(),
+            'polygons' => $this->polygons->all(),
+
         ];
 
         return view('table', $data);
