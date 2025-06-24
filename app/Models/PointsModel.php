@@ -76,4 +76,12 @@ class PointsModel extends Model
 
         return $geojson;
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'point_id');
+    }
+
 }
+
+

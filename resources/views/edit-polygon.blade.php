@@ -5,6 +5,7 @@
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
         #map {
@@ -19,48 +20,65 @@
     <div id="map"></div>
 
     <!-- Modal Edit Polygon-->
-    <div class="modal fade" id="editpolygonModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Polygon</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form method="POST" action="{{ route('polygons.update', $id) }}" enctype="multipart/form-data">
-                    <div class="modal-body">
-
-                        @csrf
-                        @method('PATCH')
-
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name"
-                                placeholder="Fill polygon name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="geom_polygon" class="form-label">Geometry</label>
-                            <textarea class="form-control" id="geom_polygon" name="geom_polygon" rows="3"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="image" class="form-label">Photo</label>
-                            <input type="file" class="form-control" id="image_polygon" name="image"
-                                onchange="document.getElementById('preview-image-polygon').src = window.URL.createObjectURL(this.files[0])">
-                            <img src="" alt="" id="preview-image-polygon" class="img-thumbnail"
-                                width="400">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </form>
+<div class="modal fade" id="editpolygonModal" tabindex="-1" aria-labelledby="editPolygonLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content shadow rounded-4 border-0">
+            <div class="modal-header bg-warning text-dark rounded-top-4">
+                <h5 class="modal-title fw-semibold" id="editPolygonLabel">
+                    <i class="bi bi-pencil-square me-2"></i> Edit Polygon
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
+
+            <form method="POST" action="{{ route('polygons.update', $id) }}" enctype="multipart/form-data">
+                @csrf
+                @method('PATCH')
+                <div class="modal-body px-4 py-3">
+                    <div class="mb-3">
+                        <label for="name" class="form-label fw-semibold">Name</label>
+                        <input type="text" class="form-control shadow-sm" id="name" name="name"
+                            placeholder="Enter polygon name..." required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label fw-semibold">Description</label>
+                        <textarea class="form-control shadow-sm" id="description" name="description" rows="3"
+                            placeholder="Describe this area..."></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="geom_polygon" class="form-label fw-semibold">Geometry</label>
+                        <textarea class="form-control shadow-sm" id="geom_polygon" name="geom_polygon" rows="3"
+                            placeholder="Paste geometry coordinates here..."></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="image" class="form-label fw-semibold">Photo</label>
+                        <input type="file" class="form-control shadow-sm" id="image_polygon" name="image"
+                            accept="image/*"
+                            onchange="document.getElementById('preview-image-polygon').src = window.URL.createObjectURL(this.files[0])">
+                        <div class="d-flex justify-content-center">
+                            <img src="" id="preview-image-polygon"
+                                class="img-fluid rounded-3 shadow-sm border mt-3" width="400" alt="Image Preview"
+                                style="max-height: 220px; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer px-4 py-3 bg-light rounded-bottom-4">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-lg me-1"></i> Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save-fill me-1"></i> Update Polygon
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+
 @endsection
 
 
