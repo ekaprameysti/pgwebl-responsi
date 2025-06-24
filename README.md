@@ -50,6 +50,7 @@
 ### 🧽 4. Eksplorasi Budaya & Fasilitas
 ![image](https://github.com/user-attachments/assets/5afd8c6d-5131-4ae6-b3fa-a379760f7104)
 ![image](https://github.com/user-attachments/assets/01c5c26a-a644-48fb-b34c-b747273bfc40)
+![image](https://github.com/user-attachments/assets/544fdff5-ca2f-4b03-9765-341309d5d126)
 ![image](https://github.com/user-attachments/assets/3d9577a7-8850-42c3-9ac6-0bdbec135b47)
 - Menyajikan informasi budaya pesisir (Pathol Sarang, Emprak, Tari Gandario, dll).
 - Pengguna dapat melihat artikel terkait budaya karena ketika klik fitur 
