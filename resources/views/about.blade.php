@@ -16,7 +16,7 @@
 
                 <h5 class="mt-2 mb-2">🗺️ Apa itu SEASIDE?</h5>
                 <p>
-                    <strong>SEASIDE</strong> adalah singkatan dari Scenic Exploration and Spatial Information for Digital Experience, yaitu sebuah platform digital interaktif yang dirancang untuk menyajikan data
+                    <strong>SEASIDE</strong> adalah singkatan dari Beaches Exploration and Spatial Information for District Rembang, yaitu sebuah platform digital interaktif yang dirancang untuk menyajikan data
                     geografis dan potensi wilayah Kabupaten Rembang secara visual, dinamis, dan mudah diakses.
                 </p>
                 <p>
