@@ -1,4 +1,4 @@
-# 🌊 **SEASIDE: Scenic Exploration and Spatial Information for Digital Experiences**
+# 🌊 **SEASIDE: Beaches Exploration and Spatial Information for District Rembang**
 ![image](https://github.com/user-attachments/assets/128c849d-5444-47c2-aa12-66c40bee7744)
 **SEASIDE** adalah website interaktif berbasis Laravel yang dirancang untuk membantu masyarakat dan wisatawan menjelajahi pesisir Kabupaten Rembang. Aplikasi ini menyajikan data titik pantai, estimasi rute, area pesisir, ulasan pengunjung, hingga galeri foto dengan tampilan peta interaktif dan antarmuka menarik. Platform ini menggabungkan data spasial dan konten visual untuk mempromosikan kekayaan wisata bahari Rembang dalam satu sistem informasi.
 
