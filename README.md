@@ -128,4 +128,7 @@
 ---
 
 ## 👤 Developer
-- Eka Nafi' Prameysti
+![image](https://github.com/user-attachments/assets/2baca617-6e6e-4d02-896e-06841a5070ea)
+![image](https://github.com/user-attachments/assets/4601f104-e979-4086-a381-0bfa4da41ab2)
+![image](https://github.com/user-attachments/assets/5b2ba2ce-a41b-4d43-ad65-438600d5b539)
+- Pengguna bisa melihat media sosial developer hanya dengan klik pada logo medsos yang ingin dibuka.
